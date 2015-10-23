@@ -35,7 +35,7 @@ var i,j;
 var co=1;
 var x=4,y=1;
 var gameover=false;
-var rensa=false;
+var rensa=0;
 function overlap(){
 	var z=false;
 	for(i=0;i<Math.min(3,SIZE_Y-y);i++){
@@ -120,30 +120,32 @@ function del(){
 		rensa=0;
 }
 document.onkeydown=function(e){
-	if(e.keyCode==37){
-		x--;
-		if(overlap()){
-			x++;
-		}
-	}
-	if(e.keyCode==38){
-		rotate(puyo[0]);
-		if(overlap()){
-			rotate(puyo[0]);
-			rotate(puyo[0]);
-			rotate(puyo[0]);
-		}
-	}
-	if(e.keyCode==39){
-		x++;
-		if(overlap()){
+	if(rensa==0){
+		if(e.keyCode==37){
 			x--;
+			if(overlap()){
+				x++;
+			}
 		}
-	}
-	if(e.keyCode==40){
-		y++;
-		if(overlap()){
-			y--;
+		if(e.keyCode==38){
+			rotate(puyo[0]);
+			if(overlap()){
+				rotate(puyo[0]);
+				rotate(puyo[0]);
+				rotate(puyo[0]);
+			}
+		}
+		if(e.keyCode==39){
+			x++;
+			if(overlap()){
+				x--;
+			}
+		}
+		if(e.keyCode==40){
+			y++;
+			if(overlap()){
+				y--;
+			}
 		}
 	}
 };
